@@ -1,0 +1,44 @@
+header {
+    display: flex;
+    align-items: center;
+    @media  (max-width: 500px) {
+        justify-content: end;
+    }
+    background-color: lightblue;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    height: 100%;
+
+    @media (max-width: 500px) {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+nav {
+    background-color: lightgreen;
+
+    @media (max-width: 500px) {
+        display: none;
+    }
+}
+
+.task-container {
+    background-color: lightcoral;
+}
+
+.dropdown {
+    margin-right: auto;
+
+    @media (min-width: 501px) {
+        display: none;
+    }
+}
+
+#content { 
+    display: flex;
+    flex-direction: column;
+}
