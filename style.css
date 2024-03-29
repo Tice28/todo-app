@@ -55,6 +55,8 @@ form {
 .nav-element {
     text-align: center;
     padding: 10px;
+    border: none;
+    background: none;
 }
 
 .dropdown {

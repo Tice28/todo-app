@@ -1,16 +1,11 @@
-const content = document.getElementById("content");
-const navAll = document.getElementById("navAll");
-const navAddTask = document.getElementById("navAddTask");
-
-navAll.addEventListener("click", loadAllTasksPage);
-navAddTask.addEventListener("click", loadAddTaskPage);
-
 function loadAllTasksPage(){
+    const content = document.getElementById("content");
     content.innerHTML = `
     Task Container`;
 }
 
 function loadAddTaskPage(){
+  const content = document.getElementById("content");
     content.innerHTML = `
     <form target="_self">
     <h1>New Task</h1>
@@ -29,3 +24,5 @@ function loadAddTaskPage(){
     <button id="cancelBtn">Cancel</button>
   </form>`;
 }
+
+export {loadAddTaskPage, loadAllTasksPage}
