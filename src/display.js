@@ -25,4 +25,22 @@ function loadAddTaskPage(){
   </form>`;
 }
 
-export {loadAddTaskPage, loadAllTasksPage}
+function loadAddCatPage(){
+  const content = document.getElementById("content");
+  content.innerHTML = `<form target="_self">
+  <h1>New Category</h1>
+  <label for="cat-title">Title</label>
+  <input type="text" name="title" id="cat-title" />
+  <label for="cat-color">Category Color</label>
+  <input type="color" name="color" id="cat-color" />
+  <label for="task-category">Category Tag</label>
+  <input id="cat-tag" list="tags-list" />
+  <datalist id="tags-list">
+    <option value="tag">tag</option>
+  </datalist>
+  <button type="submit">Add</button>
+  <button id="cancelBtn">Cancel</button>
+</form>`;
+}
+
+export {loadAddTaskPage, loadAllTasksPage, loadAddCatPage}
