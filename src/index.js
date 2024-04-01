@@ -1,6 +1,5 @@
-import { loadAllTasksPage } from "./display";
-import { loadAddTaskPage } from "./display";
-import { loadAddCatPage } from "./display";
+import { loadAllTasksPage, loadAddCatPage, loadAddTaskPage } from "./display";
+import createTask from "./task";
 
 const navAll = document.getElementById("navAll");
 const navAddTask = document.getElementById("navAddTask");
