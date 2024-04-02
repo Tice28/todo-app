@@ -1,3 +1,5 @@
+import { deleteTask } from "./button";
+
 function loadAllTasksPage(){
     const content = document.getElementById("content");
     content.innerHTML = ``;
@@ -47,10 +49,16 @@ function displayTasks(taskArr){
 
   for(let i = 0; i < taskArr.length; i++){
     let childTask = document.createElement("div");
+
+    let delButton = document.createElement("button");
+    delButton.innerText, delButton.textContent = "Delete";
+    delButton.addEventListener("click", deleteTask);
+
     childTask.innerHTML = 
     `${taskArr[i].getCategory()} ${taskArr[i].getTitle()}
     ${taskArr[i].getPriority()} ${taskArr[i].getDate()} 
-    <button>Modify</button> <button>Complete</button> <button>Delete</button>`;
+    <button>Modify</button><button>Complete</button>`;
+    childTask.appendChild(delButton);
     childTask.classList.add("task");
     content.appendChild(childTask);
   }
