@@ -1,8 +1,8 @@
 import { loadAllTasksPage, loadAddCatPage, loadAddTaskPage, displayTasks } from "./display";
 import createTask from "./task";
 
-let taskList = [createTask("TestTask1",1,"5/20/2024","TestCat1"),createTask("TestTask2",1,"5/23/2024","TestCat2")];
-
+let taskList = [new createTask("TestTask1",1,"5/20/2024","TestCat1")];
+console.log(JSON.stringify(taskList[0]));
 const navAll = document.getElementById("navAll");
 const navAddTask = document.getElementById("navAddTask");
 const navAddCat = document.getElementById("navAddCat");
