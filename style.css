@@ -67,9 +67,15 @@ form {
     }
 }
 
+.task {
+    padding: 10px;
+    background-color: lightgray;
+}   
+
 #content { 
     display: flex;
     flex-direction: column;
+    gap: 5px;
 }
 
 #select-dropdown {

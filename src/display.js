@@ -1,7 +1,6 @@
 function loadAllTasksPage(){
     const content = document.getElementById("content");
-    content.innerHTML = `
-    Task Container`;
+    content.innerHTML = ``;
 }
 
 function loadAddTaskPage(){
@@ -43,4 +42,18 @@ function loadAddCatPage(){
 </form>`;
 }
 
-export {loadAddTaskPage, loadAllTasksPage, loadAddCatPage}
+function displayTasks(taskArr){
+  const content = document.getElementById("content");
+
+  for(let i = 0; i < taskArr.length; i++){
+    let childTask = document.createElement("div");
+    childTask.innerHTML = 
+    `${taskArr[i].getCategory()} ${taskArr[i].getTitle()}
+    ${taskArr[i].getPriority()} ${taskArr[i].getDate()} 
+    <button>Modify</button> <button>Complete</button> <button>Delete</button>`;
+    childTask.classList.add("task");
+    content.appendChild(childTask);
+  }
+}
+
+export {loadAddTaskPage, loadAllTasksPage, loadAddCatPage, displayTasks}
