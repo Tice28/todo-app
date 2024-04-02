@@ -55,7 +55,7 @@ function displayTasks(taskArr){
     delButton.addEventListener("click", deleteTask);
 
     childTask.innerHTML = 
-    `${taskArr[i].getCategory()} ${taskArr[i].getTitle()}
+    `${taskArr[i].getCategory()} <div class="title">${taskArr[i].getTitle()}</div>
     ${taskArr[i].getPriority()} ${taskArr[i].getDate()} 
     <button>Modify</button><button>Complete</button>`;
     childTask.appendChild(delButton);

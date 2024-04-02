@@ -21,6 +21,7 @@ dropdown.addEventListener("change", () => {
             break;
         case "all":
             loadAllTasksPage();
+            displayTasks(taskList);
             break;
         case "addCat":
             loadAddCatPage();
