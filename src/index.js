@@ -1,8 +1,4 @@
 import { loadAllTasksPage, loadAddCatPage, loadAddTaskPage, displayTasks } from "./display";
-import createTask from "./task";
-
-let taskList = [new createTask("TestTask1",1,"5/20/2024","TestCat1")];
-console.log(JSON.stringify(taskList));
 
 const navAll = document.getElementById("navAll");
 const navAddTask = document.getElementById("navAddTask");
@@ -11,7 +7,7 @@ const dropdown = document.getElementById("select-dropdown");
 
 navAll.addEventListener("click", () => {
     loadAllTasksPage();
-    displayTasks(taskList);
+    displayTasks(JSON.parse(localStorage.getItem("taskList")));
 });
 navAddTask.addEventListener("click", loadAddTaskPage);
 navAddCat.addEventListener("click", loadAddCatPage);

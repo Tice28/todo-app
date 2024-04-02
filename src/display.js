@@ -46,8 +46,8 @@ function loadAddCatPage(){
 
 function displayTasks(taskArr){
   const content = document.getElementById("content");
-
-  for(let i = 0; i < taskArr.length; i++){
+  let i = 0;
+  while(taskArr[i] !== undefined){
     let childTask = document.createElement("div");
 
     let delButton = document.createElement("button");
@@ -61,6 +61,7 @@ function displayTasks(taskArr){
     childTask.appendChild(delButton);
     childTask.classList.add("task");
     content.appendChild(childTask);
+    i++;
   }
 }
 
