@@ -8,7 +8,7 @@ function loadAddTaskPage(){
     <label for="task-title">Title</label>
     <input type="text" name="title" id="task-title" />
     <label for="task-prio">Priority</label>
-    <input type="number" name="prio" id="task-prio" />
+    <input list="priority-list" name="prio" id="task-prio" pattern="[1-3]{1}"/>
     <label for="task-date">Due Date</label>
     <input type="date" name="date" id="task-date" />
     <label for="task-category">Category</label>
@@ -16,10 +16,18 @@ function loadAddTaskPage(){
     <datalist id="category-list">
       <option value="temp">temp</option>
     </datalist>
+    <datalist id="priority-list">
+      <option value="1">High</option>
+      <option value="2">Normal</option>
+      <option value="3">Low</option>
+    </datalist>
     <button type="submit" class="submitBtn">Add</button>
     <input type="button" class="cancelBtn">Cancel</input>
   </form>`;
-  const submitBtn = document.getElementsByClassName("submitBtn")[0].addEventListener("click", addTask);
+  const submitBtn = document.getElementsByClassName("submitBtn")[0].addEventListener("click", () => {
+    addTask();
+    displayCurrentTasks();
+  });
   const cancelBtn = document.getElementsByClassName("cancelBtn")[0].addEventListener("click", displayCurrentTasks);
 }
 
@@ -40,7 +48,7 @@ function loadAddCatPage(){
   <button type="submit" class="submitBtn">Add</button>
   <input type="button" class="cancelBtn">Cancel</input>
 </form>`;
-const submitBtn = document.getElementsByClassName("submitBtn")[0].addEventListener("click", addCat);
+const submitBtn = document.getElementsByClassName("submitBtn")[0].addEventListener("click", () =>{addCat(); displayCurrentTasks();});
 const cancelBtn = document.getElementsByClassName("cancelBtn")[0].addEventListener("click", displayCurrentCategories);
 }
 

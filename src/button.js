@@ -1,4 +1,4 @@
-import { displayTasks } from "./display";
+import { displayCurrentTasks } from "./display";
 import { createCategory, createTask } from "./data";
 
 function deleteTask(elem){
@@ -20,7 +20,7 @@ function modifyTask(elem, taskUpdate){
         }
     }
     localStorage.setItem("taskList", JSON.stringify(list));
-    displayTasks();
+    displayCurrentTasks();
 }
 
 function completeTask(elem){
@@ -31,7 +31,7 @@ function completeTask(elem){
         }
     }
     localStorage.setItem("taskList", JSON.stringify(list));
-    displayTasks();
+    displayCurrentTasks();
 }
 
 function addCat(){
@@ -65,7 +65,6 @@ function addTask(){
         tasks.push(new createTask(title,prio,date,category));
         localStorage.setItem("taskList", JSON.stringify(tasks));
     }
-    console.log(tasks)
 }
 
  export {deleteTask, modifyTask, completeTask, addCat, addTask}
