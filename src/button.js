@@ -1,4 +1,5 @@
-import { updateLocalStorage } from "./storage";
+import { displayTasks } from "./display";
+import { createCategory, createTask } from "./data";
 
 function deleteTask(elem){
     let list = JSON.parse(localStorage.getItem("taskList"));
@@ -8,7 +9,63 @@ function deleteTask(elem){
         }
     }
     elem.target.parentNode.remove();
-    updateLocalStorage("taskList", JSON.stringify(list));
+    localStorage.setItem("taskList", JSON.stringify(list));
  }
 
- export {deleteTask}
+function modifyTask(elem, taskUpdate){
+    let list = JSON.parse(localStorage.getItem("taskList"));
+    for (const key in list) {
+        if(list[key].title == elem.target.parentNode.querySelector('.title').textContent){
+            list[key] = taskUpdate;
+        }
+    }
+    localStorage.setItem("taskList", JSON.stringify(list));
+    displayTasks();
+}
+
+function completeTask(elem){
+    let list = JSON.parse(localStorage.getItem("taskList"));
+    for (const key in list) {
+        if(list[key].title == elem.target.parentNode.querySelector('.title').textContent){
+            list[key].isComplete = true;
+        }
+    }
+    localStorage.setItem("taskList", JSON.stringify(list));
+    displayTasks();
+}
+
+function addCat(){
+    const title = document.getElementById("cat-title").value;
+    const color = document.getElementById("cat-color").value;
+    const tag = document.getElementById("cat-tag").value;
+
+    let categories = JSON.parse(localStorage.getItem("catList"));
+
+    if(categories == null){
+        localStorage.setItem("catList", JSON.stringify([new createCategory(title,color,tag)]))
+    }
+    else{
+        categories.push(new createCategory(title, color, tag));
+        localStorage.setItem("catList", JSON.stringify(categories));
+    }
+}
+
+function addTask(){
+    const title = document.getElementById("task-title").value;
+    const prio = document.getElementById("task-prio").value;
+    const date = document.getElementById("task-date").value;
+    const category = document.getElementById("task-category").value;
+
+    let tasks = JSON.parse(localStorage.getItem("taskList"));
+
+    if(tasks == null){
+        localStorage.setItem("taskList", JSON.stringify([new createTask(title,priority,date,category)]));
+    }
+    else{
+        tasks.push(new createTask(title,prio,date,category));
+        localStorage.setItem("taskList", JSON.stringify(tasks));
+    }
+    console.log(tasks)
+}
+
+ export {deleteTask, modifyTask, completeTask, addCat, addTask}
