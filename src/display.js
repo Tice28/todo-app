@@ -1,6 +1,9 @@
 import { completeTask, deleteTask, modifyTask, addCat, addTask } from "./button";
 
+
+
 function loadAddTaskPage(){
+  const categories = JSON.parse(localStorage.getItem("catList"));
   const content = document.getElementById("content");
     content.innerHTML = `
     <form action="" method="get" onSubmit="event.preventDefault();">
@@ -14,7 +17,6 @@ function loadAddTaskPage(){
     <label for="task-category">Category</label>
     <input id="task-category" list="category-list" />
     <datalist id="category-list">
-      <option value="temp">temp</option>
     </datalist>
     <datalist id="priority-list">
       <option value="1">High</option>
@@ -24,6 +26,15 @@ function loadAddTaskPage(){
     <button type="submit" class="submitBtn">Add</button>
     <input type="button" class="cancelBtn">Cancel</input>
   </form>`;
+  const categoryOptions = document.getElementById("category-list");
+  
+  for(let i = 0; i < categories.length; i++){
+    const childOption = document.createElement("option");
+    childOption.value = categories[i]; 
+    childOption.textContent = categories[i].title;
+    categoryOptions.appendChild(childOption);
+  }
+  
   const submitBtn = document.getElementsByClassName("submitBtn")[0].addEventListener("click", () => {
     addTask();
     displayCurrentTasks();
@@ -43,11 +54,11 @@ function loadAddCatPage(){
   <label for="task-category">Category Tag</label>
   <input id="cat-tag" list="tags-list" required/>
   <datalist id="tags-list">
-    <option value="tag">tag</option>
   </datalist>
   <button type="submit" class="submitBtn">Add</button>
   <input type="button" class="cancelBtn">Cancel</input>
 </form>`;
+//TODO: figure out how to display svg options and category class stuff
 const submitBtn = document.getElementsByClassName("submitBtn")[0].addEventListener("click", () =>{addCat(); displayCurrentTasks();});
 const cancelBtn = document.getElementsByClassName("cancelBtn")[0].addEventListener("click", displayCurrentCategories);
 }
