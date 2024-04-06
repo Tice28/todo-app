@@ -52,15 +52,22 @@ function loadAddCatPage(){
   <label for="cat-color">Category Color</label>
   <input type="color" name="color" id="cat-color" />
   <label for="task-category">Category Tag</label>
-  <input id="cat-tag" list="tags-list" required/>
+  <div class="tag-display">
+  <img id="tag-image" src="none" alt="star" onerror="this.style.display='none'"/>
+  <input id="cat-tag" list="tags-list" placeholder="Choose a tag" required/>
+  </div>
   <datalist id="tags-list">
+    <option value="Star">Important</option>
   </datalist>
   <button type="submit" class="submitBtn">Add</button>
   <input type="button" class="cancelBtn">Cancel</input>
-</form>`;
-//TODO: figure out how to display svg options and category class stuff
-const submitBtn = document.getElementsByClassName("submitBtn")[0].addEventListener("click", () =>{addCat(); displayCurrentTasks();});
-const cancelBtn = document.getElementsByClassName("cancelBtn")[0].addEventListener("click", displayCurrentCategories);
+  </form>`;
+
+  const tagImg = document.getElementById("tag-image");
+  const catTag = document.getElementById("cat-tag");
+  catTag.addEventListener("change", () =>{setImage(tagImg, `${catTag.value.toLowerCase()}.svg`)});
+  const submitBtn = document.getElementsByClassName("submitBtn")[0].addEventListener("click", () =>{addCat(); displayCurrentTasks();});
+  const cancelBtn = document.getElementsByClassName("cancelBtn")[0].addEventListener("click", displayCurrentCategories);
 }
 
 function displayCurrentTasks(){
@@ -170,6 +177,12 @@ function displayNoCompletedTasks(){
 function displayNoCategories(){
   const content = document.getElementById("content");
   content.innerHTML = `<h1>No Categories! Get started by going to the 'Add Category' page.`;
+}
+
+function setImage(img, src){
+  console.log(img.src)
+  img.src = src;
+  img.style.display = "block";
 }
 
 export {loadAddTaskPage, loadAddCatPage, displayCurrentTasks, displayCompletedTasks, displayCurrentCategories}

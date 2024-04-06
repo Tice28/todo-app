@@ -52,6 +52,16 @@ form {
     align-items: center;
 }
 
+img {
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+}
+
+.tag-display {
+    display: flex;
+}
+
 .nav-element {
     text-align: center;
     padding: 10px;
