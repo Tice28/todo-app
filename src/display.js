@@ -30,7 +30,7 @@ function loadAddTaskPage(){
   
   for(let i = 0; i < categories.length; i++){
     const childOption = document.createElement("option");
-    childOption.value = categories[i]; 
+    childOption.value = JSON.stringify(categories[i]); 
     childOption.textContent = categories[i].title;
     categoryOptions.appendChild(childOption);
   }
@@ -51,7 +51,7 @@ function loadAddCatPage(){
   <input type="text" name="title" id="cat-title" required/>
   <label for="cat-color">Category Color</label>
   <input type="color" name="color" id="cat-color" />
-  <label for="task-category">Category Tag</label>
+  <label for="cat-tag">Category Tag</label>
   <div class="tag-display">
   <img id="tag-image" src="none" alt="star" onerror="this.style.display='none'"/>
   <input id="cat-tag" list="tags-list" placeholder="Choose a tag" required/>
@@ -78,30 +78,31 @@ function displayCurrentTasks(){
   if(taskArr && taskArr.length > 0){
     let i = 0;
     while(i < taskArr.length){
-      
-      if(taskArr[i].isComplete !== true){
-        let childTask = document.createElement("div");
+      if(taskArr[i].hasOwnProperty("isComplete")){
+        if(taskArr[i].isComplete !== true){
+          let childTask = document.createElement("div");
   
-        let modButton = document.createElement("button");
-        modButton.innerText, modButton.textContent = "Modify";
-        modButton.addEventListener("click", modifyTask);
-    
-        let completeButton = document.createElement("button");
-        completeButton.innerText, completeButton.textContent = "Complete";
-        completeButton.addEventListener("click", completeTask);
-    
-        let delButton = document.createElement("button");
-        delButton.innerText, delButton.textContent = "Delete";
-        delButton.addEventListener("click", deleteTask);
-    
-        childTask.innerHTML = 
-        `${taskArr[i].category} <div class="title">${taskArr[i].title}</div>
-        ${taskArr[i].priority} ${taskArr[i].date}`;
-        childTask.appendChild(modButton);
-        childTask.appendChild(completeButton);
-        childTask.appendChild(delButton);
-        childTask.classList.add("task");
-        content.appendChild(childTask);
+          let modButton = document.createElement("button");
+          modButton.innerText, modButton.textContent = "Modify";
+          modButton.addEventListener("click", modifyTask);
+      
+          let completeButton = document.createElement("button");
+          completeButton.innerText, completeButton.textContent = "Complete";
+          completeButton.addEventListener("click", completeTask);
+      
+          let delButton = document.createElement("button");
+          delButton.innerText, delButton.textContent = "Delete";
+          delButton.addEventListener("click", deleteTask);
+      
+          childTask.innerHTML = 
+          `<img src="${JSON.parse(taskArr[i].category).tag}" alt="category tag"/> <div class="title">${taskArr[i].title}</div>
+          ${taskArr[i].priority} ${taskArr[i].date}`;
+          childTask.appendChild(modButton);
+          childTask.appendChild(completeButton);
+          childTask.appendChild(delButton);
+          childTask.classList.add("task");
+          content.appendChild(childTask);
+        }
       }
       
       i++;
@@ -147,9 +148,14 @@ function displayCurrentCategories(){
 
     while(i < catArr.length){
       let childCat = document.createElement("div");
-      childCat.innerHTML = `
-      ${catArr[i].title} ${catArr[i].color} ${catArr[i].tag}`;
+      let tagImg = document.createElement("img");
+      let cat = document.createElement("div");
+      setImage(tagImg, `${catArr[i].tag}`)
+      cat.innerHTML = `
+      ${catArr[i].title} ${catArr[i].color}`;
       childCat.classList.add("category");
+      childCat.appendChild(tagImg);
+      childCat.appendChild(cat);
       content.appendChild(childCat);
       i++;
     }

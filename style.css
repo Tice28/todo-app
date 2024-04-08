@@ -82,6 +82,11 @@ img {
     background-color: lightgray;
 }   
 
+.category {
+    display: flex;
+    gap: 5px;
+}
+
 #content { 
     display: flex;
     flex-direction: column;

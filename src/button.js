@@ -13,14 +13,16 @@ function deleteTask(elem){
  }
 
 function modifyTask(elem, taskUpdate){
-    let list = JSON.parse(localStorage.getItem("taskList"));
-    for (const key in list) {
-        if(list[key].title == elem.target.parentNode.querySelector('.title').textContent){
-            list[key] = taskUpdate;
+    if(taskUpdate !== null){
+        let list = JSON.parse(localStorage.getItem("taskList"));
+        for (const key in list) {
+            if(list[key].title == elem.target.parentNode.querySelector('.title').textContent){
+                list[key] = taskUpdate;
+            }
         }
+        localStorage.setItem("taskList", JSON.stringify(list));
+        displayCurrentTasks();
     }
-    localStorage.setItem("taskList", JSON.stringify(list));
-    displayCurrentTasks();
 }
 
 function completeTask(elem){
@@ -42,10 +44,10 @@ function addCat(){
     let categories = JSON.parse(localStorage.getItem("catList"));
 
     if(categories == null){
-        localStorage.setItem("catList", JSON.stringify([new createCategory(title,color,tag)]))
+        localStorage.setItem("catList", JSON.stringify([new createCategory(title,color,`${tag.toLowerCase()}`)]))
     }
     else{
-        categories.push(new createCategory(title, color, tag));
+        categories.push(new createCategory(title,color,`${tag.toLowerCase()}`));
         localStorage.setItem("catList", JSON.stringify(categories));
     }
 }
@@ -59,7 +61,7 @@ function addTask(){
     let tasks = JSON.parse(localStorage.getItem("taskList"));
 
     if(tasks == null){
-        localStorage.setItem("taskList", JSON.stringify([new createTask(title,priority,date,category)]));
+        localStorage.setItem("taskList", JSON.stringify([new createTask(title,prio,date,category)]));
     }
     else{
         tasks.push(new createTask(title,prio,date,category));

@@ -12,7 +12,7 @@ class createCategory {
     constructor(title, color, tag){
         this.title = title;
         this.color = color;
-        this.tag = tag;
+        this.tag = `${tag}.svg`;
     }
 }
 
