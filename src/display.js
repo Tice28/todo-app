@@ -1,7 +1,5 @@
 import { completeTask, deleteTask, modifyTask, addCat, addTask } from "./button";
 
-
-
 function loadAddTaskPage(){
   const categories = JSON.parse(localStorage.getItem("catList"));
   const content = document.getElementById("content");
@@ -24,7 +22,7 @@ function loadAddTaskPage(){
       <option value="3">Low</option>
     </datalist>
     <button type="submit" class="submitBtn">Add</button>
-    <input type="button" class="cancelBtn">Cancel</input>
+    <input type="button" class="cancelBtn" value="cancel" />
   </form>`;
   const categoryOptions = document.getElementById("category-list");
   
@@ -60,7 +58,7 @@ function loadAddCatPage(){
     <option value="Star">Important</option>
   </datalist>
   <button type="submit" class="submitBtn">Add</button>
-  <input type="button" class="cancelBtn">Cancel</input>
+  <input type="button" class="cancelBtn" value="cancel" />
   </form>`;
 
   const tagImg = document.getElementById("tag-image");
@@ -84,7 +82,7 @@ function displayCurrentTasks(){
   
           let modButton = document.createElement("button");
           modButton.innerText, modButton.textContent = "Modify";
-          modButton.addEventListener("click", modifyTask);
+          modButton.addEventListener("click", displayModifyForm);
       
           let completeButton = document.createElement("button");
           completeButton.innerText, completeButton.textContent = "Complete";
@@ -165,6 +163,18 @@ function displayCurrentCategories(){
   }
 }
 
+function displayModifyForm(){
+  const modForm = document.getElementById("modify-form").style.visibility = "visible";
+}
+
+function clearModifyForm(){
+  const modTitle = document.getElementById("mod-task-title").value = null;
+  const modPrio = document.getElementById("mod-task-prio").value = null;
+  const modDate = document.getElementById("mod-task-date").value = null;
+  const modCat = document.getElementById("mod-task-category").value = null;
+  const modForm = document.getElementById("modify-form").style.visibility = "hidden";
+}
+
 function clearContent(){
   const content = document.getElementById("content");
   content.innerHTML = "";
@@ -191,4 +201,4 @@ function setImage(img, src){
   img.style.display = "block";
 }
 
-export {loadAddTaskPage, loadAddCatPage, displayCurrentTasks, displayCompletedTasks, displayCurrentCategories}
+export {loadAddTaskPage, loadAddCatPage, displayCurrentTasks, displayCompletedTasks, displayCurrentCategories, clearModifyForm}

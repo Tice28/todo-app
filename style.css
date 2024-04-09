@@ -101,3 +101,19 @@ img {
     background: none;
     border: 1px solid grey;
 }
+
+#modify-form {
+    position: absolute;
+    top: 15%;
+    left: 45%;
+    width: fit-content;
+    height: fit-content;
+    padding: 30px;
+    background-color: grey;
+    border: 1px solid black;
+    border-radius: 5px;
+    visibility: hidden;
+    @media  (max-width: 500px) {
+        left: 10%;
+    }
+}

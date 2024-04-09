@@ -30,6 +30,35 @@
         <button class="nav-element" id="navComplete">Completed Tasks</button>
         <button class="nav-element" id="navCategories">Categories</button>
       </nav>
+      <form
+        id="modify-form"
+        action=""
+        method="get"
+        onSubmit="event.preventDefault();"
+      >
+        <h1>Modify Task</h1>
+        <label for="mod-task-title">Title</label>
+        <input type="text" name="title" id="mod-task-title" />
+        <label for="mod-task-prio">Priority</label>
+        <input
+          list="priority-list"
+          name="prio"
+          id="mod-task-prio"
+          pattern="[1-3]{1}"
+        />
+        <label for="mod-task-date">Due Date</label>
+        <input type="date" name="date" id="mod-task-date" />
+        <label for="mod-task-category">Category</label>
+        <input id="mod-task-category" list="category-list" />
+        <datalist id="mod-category-list"> </datalist>
+        <datalist id="mod-priority-list">
+          <option value="1">High</option>
+          <option value="2">Normal</option>
+          <option value="3">Low</option>
+        </datalist>
+        <button type="submit" class="submitBtn">Add</button>
+        <input id="mod-cancel" type="button" class="cancelBtn" value="Cancel" />
+      </form>
       <div id="content"></div>
     </main>
   </body>
