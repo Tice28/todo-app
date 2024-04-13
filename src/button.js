@@ -1,4 +1,4 @@
-import { displayCurrentTasks } from "./display";
+import { clearChildren, displayCurrentTasks } from "./display";
 import { createCategory, createTask } from "./data";
 
 function deleteTask(elem){
@@ -21,6 +21,7 @@ function modifyTask(elem, taskUpdate){
             }
         }
         localStorage.setItem("taskList", JSON.stringify(list));
+        clearChildren();
         displayCurrentTasks();
     }
 }

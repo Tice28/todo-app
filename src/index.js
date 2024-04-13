@@ -1,3 +1,4 @@
+import { modifyTask } from "./button";
 import { loadAddCatPage, loadAddTaskPage, displayCurrentTasks, displayCompletedTasks, displayCurrentCategories, clearModifyForm } from "./display";
 
 window.onload = displayCurrentTasks();
@@ -8,6 +9,7 @@ const navAddCat = document.getElementById("navAddCat");
 const navComplete = document.getElementById("navComplete");
 const navCategories = document.getElementById("navCategories");
 const dropdown = document.getElementById("select-dropdown");
+const modUpdate = document.getElementById("mod-update").addEventListener("click", modifyTask);
 const modCancel = document.getElementById("mod-cancel").addEventListener("click", clearModifyForm);
 
 navAll.addEventListener("click", () => {

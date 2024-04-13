@@ -80,9 +80,10 @@ function displayCurrentTasks(){
         if(taskArr[i].isComplete !== true){
           let childTask = document.createElement("div");
   
+          let task = taskArr[i];
           let modButton = document.createElement("button");
           modButton.innerText, modButton.textContent = "Modify";
-          modButton.addEventListener("click", displayModifyForm);
+          modButton.addEventListener("click", () => {displayModifyForm(task)});
       
           let completeButton = document.createElement("button");
           completeButton.innerText, completeButton.textContent = "Complete";
@@ -163,8 +164,29 @@ function displayCurrentCategories(){
   }
 }
 
-function displayModifyForm(){
+function displayModifyForm(task){
+  const modTitle = document.getElementById("mod-task-title").value = task.title;
+  const modPrio = document.getElementById("mod-task-prio");
+  const modDate = document.getElementById("mod-task-date").value = task.date;
+  const modCat = document.getElementById("mod-task-category");
+
+  const categories = JSON.parse(localStorage.getItem("catList"));
+  const categoryOptions = document.getElementById("mod-category-list");
+  
+  for(let i = 0; i < categories.length; i++){
+    const childOption = document.createElement("option");
+    childOption.value = JSON.stringify(categories[i]); 
+    childOption.textContent = categories[i].title;
+    categoryOptions.appendChild(childOption);
+  }
   const modForm = document.getElementById("modify-form").style.visibility = "visible";
+}
+
+function clearChildren(parent){
+  let num = parent.childElementCount;
+  for(let i = 0; i < num; i++){
+    parent.removeChild(parent.firstElementChild);
+  }
 }
 
 function clearModifyForm(){
@@ -172,6 +194,8 @@ function clearModifyForm(){
   const modPrio = document.getElementById("mod-task-prio").value = null;
   const modDate = document.getElementById("mod-task-date").value = null;
   const modCat = document.getElementById("mod-task-category").value = null;
+  const categoryOptions = document.getElementById("mod-category-list");
+  clearChildren(categoryOptions); 
   const modForm = document.getElementById("modify-form").style.visibility = "hidden";
 }
 
@@ -201,4 +225,4 @@ function setImage(img, src){
   img.style.display = "block";
 }
 
-export {loadAddTaskPage, loadAddCatPage, displayCurrentTasks, displayCompletedTasks, displayCurrentCategories, clearModifyForm}
+export {loadAddTaskPage, loadAddCatPage, displayCurrentTasks, displayCompletedTasks, displayCurrentCategories, clearModifyForm, clearChildren}
