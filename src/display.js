@@ -21,8 +21,8 @@ function loadAddTaskPage(){
       <option value="2">Normal</option>
       <option value="3">Low</option>
     </datalist>
-    <button type="submit" class="submitBtn">Add</button>
-    <input type="button" class="cancelBtn" value="cancel" />
+    <button type="submit" class="submitBtn" id="addTaskSubmit">Add</button>
+    <input type="button" class="cancelBtn" value="cancel" id="addTaskCancel"/>
   </form>`;
   const categoryOptions = document.getElementById("category-list");
   
@@ -33,11 +33,11 @@ function loadAddTaskPage(){
     categoryOptions.appendChild(childOption);
   }
   
-  const submitBtn = document.getElementsByClassName("submitBtn")[0].addEventListener("click", () => {
+  const submitBtn = document.getElementById("addTaskSubmit").addEventListener("click", () => {
     addTask();
     displayCurrentTasks();
   });
-  const cancelBtn = document.getElementsByClassName("cancelBtn")[0].addEventListener("click", displayCurrentTasks);
+  const cancelBtn = document.getElementById("addTaskCancel").addEventListener("click", displayCurrentTasks);
 }
 
 function loadAddCatPage(){
@@ -57,18 +57,21 @@ function loadAddCatPage(){
   <datalist id="tags-list">
     <option value="Star">Important</option>
   </datalist>
-  <button type="submit" class="submitBtn">Add</button>
-  <input type="button" class="cancelBtn" value="cancel" />
+  <button type="submit" class="submitBtn" id="addCatSubmit">Add</button>
+  <input type="button" class="cancelBtn" id="addCatCancel" value="cancel" />
   </form>`;
 
   const tagImg = document.getElementById("tag-image");
   const catTag = document.getElementById("cat-tag");
   catTag.addEventListener("change", () =>{setImage(tagImg, `${catTag.value.toLowerCase()}.svg`)});
-  const submitBtn = document.getElementsByClassName("submitBtn")[0].addEventListener("click", () =>{addCat(); displayCurrentTasks();});
-  const cancelBtn = document.getElementsByClassName("cancelBtn")[0].addEventListener("click", displayCurrentCategories);
+  const submitBtn = document.getElementById("addCatSubmit").addEventListener("click", () =>{addCat(); displayCurrentTasks();});
+  const cancelBtn = document.getElementById("addCatCancel").addEventListener("click", displayCurrentCategories);
 }
 
 function displayCurrentTasks(){
+  const dropdown = document.getElementById("select-dropdown");
+  dropdown.value = "all";
+  
   clearContent();
   const content = document.getElementById("content");
   let taskArr = JSON.parse(localStorage.getItem("taskList"));
@@ -124,7 +127,7 @@ function displayCompletedTasks(){
       if(taskArr[i].isComplete == true){
         let childTask = document.createElement("div");
         childTask.innerHTML = 
-        `${taskArr[i].category} <div class="title">${taskArr[i].title}</div>
+        `<img src="${JSON.parse(taskArr[i].category).tag}" alt="category tag"/> <div class="title">${taskArr[i].title}</div>
         ${taskArr[i].priority} ${taskArr[i].date}`
         childTask.classList.add("task");
         content.appendChild(childTask);
@@ -138,6 +141,9 @@ function displayCompletedTasks(){
 }
 
 function displayCurrentCategories(){
+  const dropdown = document.getElementById("select-dropdown");
+  dropdown.value = "categories";
+
   clearContent();
   let catArr = JSON.parse(localStorage.getItem("catList"));
   const content = document.getElementById("content");

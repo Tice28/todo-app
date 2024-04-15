@@ -12,18 +12,29 @@ function deleteTask(elem){
     localStorage.setItem("taskList", JSON.stringify(list));
  }
 
-function modifyTask(elem, taskUpdate){
-    if(taskUpdate !== null){
-        let list = JSON.parse(localStorage.getItem("taskList"));
-        for (const key in list) {
-            if(list[key].title == elem.target.parentNode.querySelector('.title').textContent){
-                list[key] = taskUpdate;
-            }
-        }
-        localStorage.setItem("taskList", JSON.stringify(list));
-        clearChildren();
-        displayCurrentTasks();
+function modifyTask(elem){
+    let list = JSON.parse(localStorage.getItem("taskList"));
+    const argArr = elem.parentNode.querySelectorAll("input");
+    for (const key in list) {
+    if(list[key].title == elem.parentNode.querySelector('#mod-task-title').value){
+        console.log(updateTask(argArr));
+        list[key] = updateTask(argArr);
     }
+    }
+    localStorage.setItem("taskList", JSON.stringify(list));
+    clearChildren(document.getElementById("mod-category-list"));
+    displayCurrentTasks();
+}
+
+function updateTask(argArray){
+    let task = new createTask(
+        argArray[0].value,
+        argArray[1].value,
+        argArray[2].value,
+        argArray[3].value
+    );
+
+    return task;
 }
 
 function completeTask(elem){
