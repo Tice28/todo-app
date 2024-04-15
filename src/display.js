@@ -1,4 +1,4 @@
-import { completeTask, deleteTask, modifyTask, addCat, addTask } from "./button";
+import { completeTask, deleteTask, addCat, addTask, deleteCategory } from "./button";
 
 function loadAddTaskPage(){
   const categories = JSON.parse(localStorage.getItem("catList"));
@@ -94,7 +94,7 @@ function displayCurrentTasks(){
       
           let delButton = document.createElement("button");
           delButton.innerText, delButton.textContent = "Delete";
-          delButton.addEventListener("click", deleteTask);
+          delButton.addEventListener("click", () => {deleteTask(delButton); displayCurrentTasks()});
       
           childTask.innerHTML = 
           `<img src="${JSON.parse(taskArr[i].category).tag}" alt="category tag"/> <div class="title">${taskArr[i].title}</div>
@@ -120,6 +120,10 @@ function displayCompletedTasks(){
   let taskArr = JSON.parse(localStorage.getItem("taskList"));
   const content = document.getElementById("content");
 
+  let delButton = document.createElement("button");
+          delButton.innerText, delButton.textContent = "Delete";
+          delButton.addEventListener("click", () => {deleteTask(delButton); displayCompletedTasks();});
+
   if(taskArr && taskArr.length > 0){
     let i = 0;
 
@@ -130,6 +134,7 @@ function displayCompletedTasks(){
         `<img src="${JSON.parse(taskArr[i].category).tag}" alt="category tag"/> <div class="title">${taskArr[i].title}</div>
         ${taskArr[i].priority} ${taskArr[i].date}`
         childTask.classList.add("task");
+        childTask.appendChild(delButton);
         content.appendChild(childTask);
       }
       i++;
@@ -155,12 +160,18 @@ function displayCurrentCategories(){
       let childCat = document.createElement("div");
       let tagImg = document.createElement("img");
       let cat = document.createElement("div");
+
+      let delButton = document.createElement("button");
+      delButton.innerText, delButton.textContent = "Delete";
+      delButton.addEventListener("click", () => {deleteCategory(delButton); displayCurrentCategories();});
+
       setImage(tagImg, `${catArr[i].tag}`)
       cat.innerHTML = `
-      ${catArr[i].title} ${catArr[i].color}`;
+      <div class="title">${catArr[i].title}</div> ${catArr[i].color}`;
       childCat.classList.add("category");
       childCat.appendChild(tagImg);
       childCat.appendChild(cat);
+      childCat.appendChild(delButton);
       content.appendChild(childCat);
       i++;
     }

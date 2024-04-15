@@ -4,13 +4,25 @@ import { createCategory, createTask } from "./data";
 function deleteTask(elem){
     let list = JSON.parse(localStorage.getItem("taskList"));
     for (const key in list) {
-        if(list[key].title == elem.target.parentNode.querySelector('.title').textContent){
+        if(list[key].title == elem.parentNode.querySelector('.title').textContent){
             list.splice(key,1);
         }
     }
-    elem.target.parentNode.remove();
+    elem.parentNode.remove();
     localStorage.setItem("taskList", JSON.stringify(list));
  }
+
+ function deleteCategory(elem){
+    let list = JSON.parse(localStorage.getItem("catList"));
+    for (const key in list) {
+        if(list[key].title == elem.parentNode.querySelector('.title').textContent){
+            list.splice(key,1);
+        }
+    }
+    elem.parentNode.remove();
+    localStorage.setItem("catList", JSON.stringify(list));
+ }
+
 
 function modifyTask(elem){
     let list = JSON.parse(localStorage.getItem("taskList"));
@@ -81,4 +93,4 @@ function addTask(){
     }
 }
 
- export {deleteTask, modifyTask, completeTask, addCat, addTask}
+ export {deleteTask, deleteCategory, modifyTask, completeTask, addCat, addTask}
