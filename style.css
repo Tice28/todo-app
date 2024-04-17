@@ -80,11 +80,31 @@ img {
 .task {
     padding: 10px;
     background-color: lightgray;
+    display: grid;
+    grid-template-columns: 1fr repeat(3, 2fr);
+    grid-template-rows: repeat(2, 1fr);
+    text-align: center;
+    align-items: center;
 }   
 
-.category {
+.category, .task-complete {
     display: flex;
+    align-items: center;
     gap: 5px;
+    padding: 10px;
+}
+
+.category > button, .task-complete > button {
+    margin-left: auto;
+}
+
+
+.category-icon {
+    border-radius: 15px;
+    border: none;
+    padding: 5px;
+    grid-column: 1;
+    grid-row: 1 / 3;
 }
 
 #content { 

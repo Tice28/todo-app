@@ -10,7 +10,7 @@ const navComplete = document.getElementById("navComplete");
 const navCategories = document.getElementById("navCategories");
 const dropdown = document.getElementById("select-dropdown");
 const modUpdate = document.getElementById("mod-update");
-modUpdate.addEventListener("click", () => modifyTask(modUpdate));
+modUpdate.addEventListener("click", () => {modifyTask(modUpdate); clearModifyForm()});
 const modCancel = document.getElementById("mod-cancel").addEventListener("click", clearModifyForm);
 
 navAll.addEventListener("click", () => {

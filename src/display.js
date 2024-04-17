@@ -84,6 +84,7 @@ function displayCurrentTasks(){
           let childTask = document.createElement("div");
   
           let task = taskArr[i];
+          let category = JSON.parse(taskArr[i].category);
           let modButton = document.createElement("button");
           modButton.innerText, modButton.textContent = "Modify";
           modButton.addEventListener("click", () => {displayModifyForm(task)});
@@ -97,11 +98,13 @@ function displayCurrentTasks(){
           delButton.addEventListener("click", () => {deleteTask(delButton); displayCurrentTasks()});
       
           childTask.innerHTML = 
-          `<img src="${JSON.parse(taskArr[i].category).tag}" alt="category tag"/> <div class="title">${taskArr[i].title}</div>
-          ${taskArr[i].priority} ${taskArr[i].date}`;
+          `<img src="${category.tag}" alt="category tag" class="category-icon"/><div class="title">${taskArr[i].title}</div>
+          <div>Priority: ${taskArr[i].priority}</div><div>Date Due: ${taskArr[i].date}</div>`;
+          let categoryIcon = childTask.getElementsByClassName("category-icon")[0].style.backgroundColor = `${category.color}`;
           childTask.appendChild(modButton);
           childTask.appendChild(completeButton);
           childTask.appendChild(delButton);
+
           childTask.classList.add("task");
           content.appendChild(childTask);
         }
@@ -129,11 +132,13 @@ function displayCompletedTasks(){
 
     while(i < taskArr.length){
       if(taskArr[i].isComplete == true){
+        let category = JSON.parse(taskArr[i].category);
         let childTask = document.createElement("div");
         childTask.innerHTML = 
-        `<img src="${JSON.parse(taskArr[i].category).tag}" alt="category tag"/> <div class="title">${taskArr[i].title}</div>
+        `<img src="${JSON.parse(taskArr[i].category).tag}" alt="category tag" class="category-icon"/> <div class="title">${taskArr[i].title}</div>
         ${taskArr[i].priority} ${taskArr[i].date}`
-        childTask.classList.add("task");
+        childTask.classList.add("task-complete");
+        let categoryIcon = childTask.getElementsByClassName("category-icon")[0].style.backgroundColor = `${category.color}`;
         childTask.appendChild(delButton);
         content.appendChild(childTask);
       }
@@ -165,13 +170,15 @@ function displayCurrentCategories(){
       delButton.innerText, delButton.textContent = "Delete";
       delButton.addEventListener("click", () => {deleteCategory(delButton); displayCurrentCategories();});
 
-      setImage(tagImg, `${catArr[i].tag}`)
+      setImage(tagImg, `${catArr[i].tag}`);
+      tagImg.classList.add("category-icon");
       cat.innerHTML = `
-      <div class="title">${catArr[i].title}</div> ${catArr[i].color}`;
+      <div class="title">${catArr[i].title}</div>`;
       childCat.classList.add("category");
       childCat.appendChild(tagImg);
       childCat.appendChild(cat);
       childCat.appendChild(delButton);
+      let categoryIcon = childCat.getElementsByClassName("category-icon")[0].style.backgroundColor = `${catArr[i].color}`;
       content.appendChild(childCat);
       i++;
     }
