@@ -123,15 +123,15 @@ function displayCompletedTasks(){
   let taskArr = JSON.parse(localStorage.getItem("taskList"));
   const content = document.getElementById("content");
 
-  let delButton = document.createElement("button");
-          delButton.innerText, delButton.textContent = "Delete";
-          delButton.addEventListener("click", () => {deleteTask(delButton); displayCompletedTasks();});
-
   if(taskArr && taskArr.length > 0){
     let i = 0;
 
     while(i < taskArr.length){
       if(taskArr[i].isComplete == true){
+        let delButton = document.createElement("button");
+        delButton.innerText, delButton.textContent = "Delete";
+        delButton.addEventListener("click", () => {deleteTask(delButton); displayCompletedTasks();});
+
         let category = JSON.parse(taskArr[i].category);
         let childTask = document.createElement("div");
         childTask.innerHTML = 
