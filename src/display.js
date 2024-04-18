@@ -51,11 +51,14 @@ function loadAddCatPage(){
   <input type="color" name="color" id="cat-color" />
   <label for="cat-tag">Category Tag</label>
   <div class="tag-display">
-  <img id="tag-image" src="none" alt="star" onerror="this.style.display='none'"/>
+  <img id="tag-image" src="empty.svg" alt="star" onerror="this.style.display='none'"/>
   <input id="cat-tag" list="tags-list" placeholder="Choose a tag" required/>
   </div>
   <datalist id="tags-list">
     <option value="Star">Important</option>
+    <option value="Work">Work</option>
+    <option value="Home">Home</option>
+    <option value="School">School</option>
   </datalist>
   <button type="submit" class="submitBtn" id="addCatSubmit">Add</button>
   <input type="button" class="cancelBtn" id="addCatCancel" value="cancel" />
