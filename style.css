@@ -1,3 +1,12 @@
+:root {
+    /* CSS HEX */
+    --black: #080705ff;
+    --charcoal: #40434eff;
+    --wine: #702632ff;
+    --cordovan: #912f40ff;
+    --baby-powder: #fffffaff;
+}
+
 html, body {
     margin: 0;
     height: 100%;
@@ -10,7 +19,8 @@ header {
     @media  (max-width: 500px) {
         justify-content: end;
     }
-    background-color: lightblue;
+    background-color: var(--wine);
+    color: var(--baby-powder);
 }
 
 h1{
@@ -35,7 +45,7 @@ nav {
     justify-content: start;
     align-items: center;
     gap: 15px;
-    background-color: lightgreen;
+    background-color: var(--charcoal);
     @media (max-width: 500px) {
         display: none;
     }
@@ -44,8 +54,7 @@ nav {
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
-    text-indent: 1px;
-    text-overflow: '';
+    color: var(--baby-powder);
 }
 
 form {
@@ -57,11 +66,16 @@ form {
 img {
     width: 30px;
     height: 30px;
-    border: 1px solid black;
 }
 
 input {
-    border: 1px solid black;
+    border: 1px solid var(--black);
+}
+
+button {
+    background-color: var(--cordovan);
+    border: 1px solid var(--black);
+    color: var(--baby-powder);
 }
 
 .tag-display {
@@ -72,6 +86,8 @@ input {
     text-align: center;
     padding: 10px;
     border: none;
+    border-bottom: 2px solid var(--baby-powder);
+    color: var(--baby-powder);
     background: none;
 }
 
@@ -90,7 +106,8 @@ input {
     grid-template-rows: repeat(2, 1fr);
     text-align: center;
     align-items: center;
-    border-bottom: 1px solid black;
+    background-color: var(--baby-powder);
+    border-bottom: 1px solid var(--black);
 }   
 
 .category, .task-complete {
@@ -111,6 +128,13 @@ input {
     padding: 5px;
     grid-column: 1;
     grid-row: 1 / 3;
+    border: 1px solid var(--black);
+}
+
+.cancelBtn {
+    background-color: var(--baby-powder);
+    color: var(--cordovan);
+    border: 1px solid var(--black);
 }
 
 #content { 
@@ -127,7 +151,13 @@ input {
     margin-left: 10%;
     border: none;
     background: none;
-    border: 1px solid grey;
+    border: 1px solid var(--baby-powder);
+    border-radius: 5px;
+}
+
+#select-dropdown * {
+    background-color: var(--baby-powder);
+    color: var(--black);
 }
 
 #modify-form {
@@ -137,11 +167,19 @@ input {
     width: fit-content;
     height: fit-content;
     padding: 30px;
-    background-color: grey;
-    border: 1px solid black;
+    background-color: var(--charcoal);
+    border: 1px solid var(--black);
     border-radius: 5px;
     visibility: hidden;
     @media  (max-width: 500px) {
         left: 10%;
     }
+}
+
+#modify-form > label {
+    color: var(--baby-powder);
+}
+
+#tag-image {
+    border: 1px solid var(--black);
 }
