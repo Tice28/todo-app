@@ -7,6 +7,10 @@
     --baby-powder: #fffffaff;
 }
 
+* {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 html, body {
     margin: 0;
     height: 100%;
@@ -78,6 +82,20 @@ button {
     color: var(--baby-powder);
 }
 
+button:hover {
+    background-color: var(--wine);
+}
+
+form > label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+form > button {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
 .tag-display {
     display: flex;
 }
@@ -89,6 +107,11 @@ button {
     border-bottom: 2px solid var(--baby-powder);
     color: var(--baby-powder);
     background: none;
+}
+
+.nav-element:hover {
+    background-color: var(--baby-powder);
+    color: var(--black);
 }
 
 .dropdown {
@@ -137,12 +160,18 @@ button {
     border: 1px solid var(--black);
 }
 
+.cancelBtn:hover {
+    background-color: var(--black);
+    color: var(--baby-powder);
+}
+
 #content { 
     max-height: 100%;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
     gap: 5px;
+    scrollbar-color: var(--wine) var(--baby-powder);
 }
 
 #select-dropdown {
@@ -176,7 +205,7 @@ button {
     }
 }
 
-#modify-form > label {
+#modify-form > label , #modify-form > h1{
     color: var(--baby-powder);
 }
 
