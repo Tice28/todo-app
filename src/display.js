@@ -117,7 +117,12 @@ function displayCurrentTasks(){
     };
   }
   else{
-    displayNoTasks();
+    if(!localStorage.getItem("catList")){
+      displayInitialMessage();
+    }
+    else{
+      displayNoTasks();
+    }
   }
 }
 
@@ -244,6 +249,11 @@ function displayNoCompletedTasks(){
 function displayNoCategories(){
   const content = document.getElementById("content");
   content.innerHTML = `<h1>No Categories! Get started by going to the 'Add Category' page.`;
+}
+
+function displayInitialMessage(){
+  const content = document.getElementById("content");
+  content.innerHTML = `<h1>Welcome! Please begin by adding a category using the 'Add Category' page. Following this, you can add a task using the 'Add Task' page.</h1>`;
 }
 
 function setImage(img, src){
