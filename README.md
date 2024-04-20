@@ -31,7 +31,7 @@
 <h2>How I Would Further This Project</h2>
 
 <ul>
-<li>Create functional backend to store/retrieve task, icon, and category data rather than using local storage</li>
+<li>Create functional backend to store/retrieve task, icon, and category data rather than using local storage. I did not do this for the purpose of hosting it as a static site on Github pages</li>
 <li>Add more options for category icons</li>
 <li>Add search and sort features for current tasks</li>
 <li>Add additional style rules that depend on late, on time, and almost late tasks.</li>
