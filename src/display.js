@@ -48,7 +48,7 @@ function loadAddCatPage(){
   <input type="color" name="color" id="cat-color" />
   <label for="cat-tag">Category Tag</label>
   <div class="tag-display">
-  <img id="tag-image" src="empty.svg" alt="star" onerror="this.style.display='none'"/>
+  <img id="tag-image" src="star.svg" alt="star" onerror="this.style.display='none'"/>
   <select id="cat-tag" list="tags-list" placeholder="Choose a tag" required>
     <option value="Star">Important</option>
     <option value="Work">Work</option>
@@ -194,12 +194,12 @@ function displayCurrentCategories(){
 
 function displayModifyForm(task){
   const modTitle = document.getElementById("mod-task-title").value = task.title;
-  const modPrio = document.getElementById("mod-task-prio");
+  const modPrio = document.getElementById("mod-task-prio").value = task.priority;
   const modDate = document.getElementById("mod-task-date").value = task.date;
   const modCat = document.getElementById("mod-task-category");
 
   const categories = JSON.parse(localStorage.getItem("catList"));
-  const categoryOptions = document.getElementById("mod-category-list");
+  const categoryOptions = document.getElementById("mod-task-category");
   
   for(let i = 0; i < categories.length; i++){
     const childOption = document.createElement("option");
@@ -222,7 +222,7 @@ function clearModifyForm(){
   const modPrio = document.getElementById("mod-task-prio").value = null;
   const modDate = document.getElementById("mod-task-date").value = null;
   const modCat = document.getElementById("mod-task-category").value = null;
-  const categoryOptions = document.getElementById("mod-category-list");
+  const categoryOptions = document.getElementById("mod-task-category");
   clearChildren(categoryOptions); 
   const modForm = document.getElementById("modify-form").style.visibility = "hidden";
 }

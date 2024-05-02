@@ -36,3 +36,8 @@
 <li>Add search and sort features for current tasks</li>
 <li>Add additional style rules that depend on late, on time, and almost late tasks.</li>
 </ul>
+
+<h2>Resolved Issues</h2>
+<ul>
+<li>Resolved user input issue. Replaced inputs with selects for the category select and tasks</li>
+</ul>

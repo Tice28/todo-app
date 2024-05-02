@@ -213,7 +213,7 @@ form > button {
     border: 1px solid var(--black);
 }
 
-#cat-tag, #task-prio, #task-category {
+#cat-tag, #task-prio, #task-category, #mod-task-category, #mod-task-prio {
     background-color: var(--baby-powder);
     color: var(--black);
     text-align: center;

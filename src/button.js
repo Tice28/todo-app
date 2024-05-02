@@ -26,15 +26,13 @@ function deleteTask(elem){
 
 function modifyTask(elem){
     let list = JSON.parse(localStorage.getItem("taskList"));
-    const argArr = elem.parentNode.querySelectorAll("input");
+    const argArr = elem.parentNode.getElementsByClassName("modify-input");
     for (const key in list) {
     if(list[key].title == elem.parentNode.querySelector('#mod-task-title').value){
-        console.log(updateTask(argArr));
         list[key] = updateTask(argArr);
     }
     }
     localStorage.setItem("taskList", JSON.stringify(list));
-    clearChildren(document.getElementById("mod-category-list"));
     displayCurrentTasks();
 }
 
