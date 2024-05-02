@@ -253,7 +253,7 @@ function displayNoCategories(){
 
 function displayInitialMessage(){
   const content = document.getElementById("content");
-  content.innerHTML = `<h1>Welcome! Please begin by adding a category using the 'Add Category' page. Following this, you can add a task using the 'Add Task' page.</h1>`;
+  content.innerHTML = `<h1>Welcome! Please begin by adding a category using the 'Add Category' page, or you can also use the default "Important" tag in your task instead. Following this, you can add a task using the 'Add Task' page.</h1>`;
 }
 
 function setImage(img, src){

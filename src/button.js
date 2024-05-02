@@ -75,12 +75,13 @@ function addCat(){
 }
 
 function addTask(){
+    const defaultCat = `{"title":"Important","color":"#FFF000","tag":"star.svg"}`;
     const title = document.getElementById("task-title").value;
     const prio = document.getElementById("task-prio").value;
     const date = document.getElementById("task-date").value;
     let category = document.getElementById("task-category").value;
     if(category == ""){
-        category = `{"title":"Important","color":"#FFF000","tag":"star.svg"}`;
+        category = defaultCat;
     }
     let tasks = JSON.parse(localStorage.getItem("taskList"));
 
