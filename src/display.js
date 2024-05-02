@@ -9,22 +9,19 @@ function loadAddTaskPage(){
     <label for="task-title">Title</label>
     <input type="text" name="title" id="task-title" />
     <label for="task-prio">Priority</label>
-    <input list="priority-list" name="prio" id="task-prio" pattern="[1-3]{1}"/>
+    <select name="prio" id="task-prio">
+      <option value="High">High</option>
+      <option value="Normal">Normal</option>
+      <option value="Low">Low</option>
+    <select/>
     <label for="task-date">Due Date</label>
     <input type="date" name="date" id="task-date" />
     <label for="task-category">Category</label>
-    <input id="task-category" list="category-list" />
-    <datalist id="category-list">
-    </datalist>
-    <datalist id="priority-list">
-      <option value="1">High</option>
-      <option value="2">Normal</option>
-      <option value="3">Low</option>
-    </datalist>
+    <select id="task-category"><select/>
     <button type="submit" class="submitBtn" id="addTaskSubmit">Add</button>
     <input type="button" class="cancelBtn" value="cancel" id="addTaskCancel"/>
   </form>`;
-  const categoryOptions = document.getElementById("category-list");
+  const categoryOptions = document.getElementById("task-category");
   
   for(let i = 0; i < categories.length; i++){
     const childOption = document.createElement("option");
@@ -52,14 +49,13 @@ function loadAddCatPage(){
   <label for="cat-tag">Category Tag</label>
   <div class="tag-display">
   <img id="tag-image" src="empty.svg" alt="star" onerror="this.style.display='none'"/>
-  <input id="cat-tag" list="tags-list" placeholder="Choose a tag" required/>
-  </div>
-  <datalist id="tags-list">
+  <select id="cat-tag" list="tags-list" placeholder="Choose a tag" required>
     <option value="Star">Important</option>
     <option value="Work">Work</option>
     <option value="Home">Home</option>
     <option value="School">School</option>
-  </datalist>
+  <select/>
+  </div>
   <button type="submit" class="submitBtn" id="addCatSubmit">Add</button>
   <input type="button" class="cancelBtn" id="addCatCancel" value="cancel" />
   </form>`;
