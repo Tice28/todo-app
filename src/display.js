@@ -17,18 +17,22 @@ function loadAddTaskPage(){
     <label for="task-date">Due Date</label>
     <input type="date" name="date" id="task-date" />
     <label for="task-category">Category</label>
-    <select id="task-category"><select/>
+    <select id="task-category">
+      <option value="">Important</option>
+    <select/>
     <button type="submit" class="submitBtn" id="addTaskSubmit">Add</button>
     <input type="button" class="cancelBtn" value="cancel" id="addTaskCancel"/>
   </form>`;
   const categoryOptions = document.getElementById("task-category");
   
-  for(let i = 0; i < categories.length; i++){
-    const childOption = document.createElement("option");
-    childOption.value = JSON.stringify(categories[i]); 
-    childOption.textContent = categories[i].title;
-    categoryOptions.appendChild(childOption);
-  }
+  if(categories){
+    for(let i = 0; i < categories.length; i++){
+      const childOption = document.createElement("option");
+      childOption.value = JSON.stringify(categories[i]); 
+      childOption.textContent = categories[i].title;
+      categoryOptions.appendChild(childOption);
+    }
+  } 
   
   const submitBtn = document.getElementById("addTaskSubmit").addEventListener("click", () => {
     addTask();
